@@ -4,30 +4,40 @@ import { Form } from "react-bootstrap";
 import {Col} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {Button} from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createLogin } from "../store/Login/action";
+import { useNavigate } from "react-router-dom";
+import { selectChatClient,selectUserIdChatClient } from "../store/Login/selector";
+import { getChatClient } from "../store/Login/action";
 
 
-// require('dotenv').config({path:__dirname+'/.env'})
-
-const API_KEY = "9q8cp29sk4fh";
+const API_KEY =  "9q8cp29sk4fh";
 const PORT = process.env.REACT_APP_PORT;
 
 
 export default function Login (){
     const [userId, setUserId] = useState("");
     const dispatch = useDispatch()
+    
+    const chatClient= useSelector(selectChatClient)
+    console.log(" this is my selector",selectChatClient)
+
 
     
     // console.log("this is my app key",API_KEY)
     
     const submitForm = (event) => {
       event.preventDefault();
-      dispatch(createLogin(userId));
-      console.log(" userId",userId)
+    
+        dispatch(createLogin(userId));
+      // console.log(" userId",userId)
+     
     
         
       };
+      // useEffect(() => {
+      //   dispatch(createLogin());
+      // }, [dispatch]);
 
     return (
     <div>

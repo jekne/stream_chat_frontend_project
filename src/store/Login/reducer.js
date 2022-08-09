@@ -1,13 +1,14 @@
 const initialState = {
-    login: [],
+    login: null,
   };
   
   export default function reducer(state = initialState, action) {
     switch (action.type) {
       case "LOGIN/userLogin": {
+        console.log("what it is my payload, from the reducer",action.payload)
         return {
           ...state,
-          clubs: action.payload,
+          ...action.payload,
         };
       }
       default: {
@@ -15,3 +16,7 @@ const initialState = {
       }
     }
   }
+
+
+
+
